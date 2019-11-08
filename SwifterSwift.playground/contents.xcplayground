@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='Description'/>
+        <page name='Basic'/>
+        <page name='Operator'/>
+        <page name='Control Flow'/>
+        <page name='Control transfer statement'/>
+        <page name='String'/>
+        <page name='Array'/>
+        <page name='Dictionary'/>
+        <page name='Set'/>
+        <page name='Tuple'/>
+        <page name='Function &amp; Closure'/>
+        <page name='Class'/>
+        <page name='Enum'/>
+        <page name='Structure'/>
+        <page name='Protocol'/>
+        <page name='Extension'/>
+        <page name='AccessControl'/>
+        <page name='Pattern_Matching'/>
+        <page name='Error Handle'/>
+        <page name='Origin Protocol Programing'/>
+        <page name='For-Where'/>
+        <page name='Generic'/>
+        <page name='Height Order Function'/>
+        <page name='Equatable-Comparable-Hashable'/>
+        <page name='KeyPaths'/>
+        <page name='Optional'/>
+    </pages>
+</playground>
