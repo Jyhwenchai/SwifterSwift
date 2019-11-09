@@ -27,5 +27,7 @@
         <page name='Equatable-Comparable-Hashable'/>
         <page name='KeyPaths'/>
         <page name='Optional'/>
+        <page name='Subscript'/>
+        <page name='New Feature4.2'/>
     </pages>
 </playground>
