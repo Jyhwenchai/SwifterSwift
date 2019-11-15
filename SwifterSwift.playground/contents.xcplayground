@@ -29,5 +29,6 @@
         <page name='Optional'/>
         <page name='Subscript'/>
         <page name='New Feature4.2'/>
+        <page name='Codable'/>
     </pages>
 </playground>

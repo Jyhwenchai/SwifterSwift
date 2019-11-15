@@ -157,12 +157,12 @@ if let random = albums.randomElement() {
 //：数组新增last，last(index：)方法
 //获取满足条件的数组中的第一个值
 let a = [20, 30, 10, 40, 20, 30, 10, 40, 20]
-print(a.first(where: { $0 > 25 })!)
-print(a.index(where: { $0 > 25 })!)
-print(a.index(of: 10)!)
+//print(a.first(where: { $0 > 25 })!)
+//print(a.index(where: { $0 > 25 })!)
+//print(a.index(of: 10)!)
 
 //在Swift4.1中
-print((a.reversed().index(where: { $0 > 25 })?.base).map({ a.index(before: $0) })!)
+//print((a.reversed().index(where: { $0 > 25 })?.base).map({ a.index(before: $0) })!)
 //输出: 7
 
 //Swift 4.2
@@ -194,7 +194,6 @@ let hash = hasher.finalize()
 let scores = [86, 88, 95, 92]
 // 返回一个BOOL
 let passed = scores.allSatisfy({ $0 > 85 })
-
 
 
 
