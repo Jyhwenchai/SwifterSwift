@@ -30,5 +30,6 @@
         <page name='Subscript'/>
         <page name='New Feature4.2'/>
         <page name='Codable'/>
+        <page name='self Type and Self'/>
     </pages>
 </playground>

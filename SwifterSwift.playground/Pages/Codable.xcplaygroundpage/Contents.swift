@@ -170,5 +170,3 @@ let example03 = {
 }
 
 example03()
-
-
