@@ -52,7 +52,7 @@ let mapOptionalStrings = optionalStrings.map { (string) -> String? in
 }
 print(mapOptionalStrings)
 
-//: 使用 `flatMap` 处理
+//: 使用 `compactMap` 处理
 let compactMapStrings = optionalStrings.compactMap { $0?.lowercased() }
 print(compactMapStrings)
 
