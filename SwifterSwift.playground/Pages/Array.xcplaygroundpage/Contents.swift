@@ -85,6 +85,7 @@ print(intArray)
 
 // 返回删除最后一个元素后的数组片段，源数组不变
 let indexSlice = intArray.dropLast()
+
 intArray
 
 print(type(of: intArray))       // Array<Int> 类型

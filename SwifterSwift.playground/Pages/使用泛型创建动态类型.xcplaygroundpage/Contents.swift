@@ -80,3 +80,7 @@ let user = User(data: ["name": "john"])
 let animal = Animal(data: ["name": "Tiger"])
 
 print(user?.name, animal?.name)
+
+
+var string: String? = nil
+

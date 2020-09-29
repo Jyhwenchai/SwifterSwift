@@ -31,11 +31,13 @@ let example01 = {
         do {
             // 将 json 转换成 model
             let user = try decoder.decode(User.self, from: jsonData)
+            let encoder = JSONEncoder()
             print(user.first_name)
         } catch {
             print(error.localizedDescription)
         }
     }
+    
     
 }
 
