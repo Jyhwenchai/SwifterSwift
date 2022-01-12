@@ -14,5 +14,8 @@ import Foundation
 - Private
  `private` 限制实体只能在其定义的作用域，以及同一文件内的 `extension` 中 访问。如果功能的部分细节只需要在当前作用域内使用时，可以使用此访问权限来将其隐藏。
 
+- extension 添加访问修饰符
+ 如果为指定实体的扩展添加访问修饰符，那么如果是 `static` 属性并设置为 `public` 权限则无需重复添加 public 权限到属性中，但可以设置属性为更小粒度的访问权限 `private`
 */
 //: [Next](@next)
+

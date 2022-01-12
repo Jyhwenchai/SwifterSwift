@@ -35,5 +35,6 @@
         <page name='typealiase'/>
         <page name='associatedtype'/>
         <page name='Advanced Operators'/>
+        <page name='Optional Pattern'/>
     </pages>
 </playground>

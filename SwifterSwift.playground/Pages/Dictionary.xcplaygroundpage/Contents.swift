@@ -118,9 +118,3 @@ print(okValue)
 
 
 //: [Next](@next)
-
-
-let dddd = ["a": "b", "b": "c", "c": "d"]
-for (key, value) in dddd.enumerated() {
-    print(key, value.)
-}

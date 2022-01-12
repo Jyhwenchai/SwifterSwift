@@ -89,5 +89,31 @@ var optionalA: String? = nil
 let resultValue: String = optionalA ?? defaultValue
 print(resultValue)
 
+example {
+    let capital: String? = "BeiJin"
+    switch capital {
+    case .none: print("value is nil")
+    case .some(let captial): print("value is \(captial)")
+    }
+}
+
+//: 上面的示例中的 `.some(let captial)` 也可以使用下面的方式表示
+example {
+    let capital: String? = "BeiJin"
+    switch capital {
+    case .none: print("value is nil")
+    case let capital?:
+        print("value is \(capital)")
+    }
+}
+
+//: 对于可选类型的数组的遍历
+example {
+    let array = ["a", "b", nil, "c"]
+    for case let value? in array {
+        print(value)
+    }
+}
+
 
 //: [Next](@next)
