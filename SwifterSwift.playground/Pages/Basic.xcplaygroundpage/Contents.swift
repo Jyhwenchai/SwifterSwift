@@ -2,45 +2,69 @@
 
 import UIKit
 
+//: # Basic
+
 /*:
 - 变量与常量的定义
 - 类型推断与类型标注
-- 常用函数
 - 基础数据类型
+- 常用函数
 - 可选类型
 - 附加
  */
 
 
-//: 使用 `let` 定义常量
+//: ## let 和 var
+
+//: ### 使用 `let` 定义一个常量
 let constInt = 50     // 整形常量
 let constString = "Const String"    // 字符串常量
 
-//: 你不能修改一个常量，尝试的修改将无法通过编译
+// 你不能修改一个常量，尝试的修改将无法通过编译
 //constInt = 100 // error
 
-//: 使用 `var` 定义变量, 你可以在变量定义的生命周期范围的任何地方修改它的值
+//: ### 使用 `var` 定义一个变量
 var variableInt = 50
 var variableString = "Variable String"
 
-// 修改变量的值
+// 你可以在定义变量的生命周期范围内的任何地方修改它的值
 variableInt = 100
 variableString += " ..."
 
-//： 类型推断 - 在没有进行显示声明变量类型时编译器会根据变量的值自动推断变量的类型）
+//: ## 类型推断和类型标注
+//: ### 类型推断
+//: 在没有进行显示声明变量类型时编译器会根据变量的值自动推断变量的类型）
 let intValue = 10   // swift 会自动推断其为 Int 类型
 
-//: 类型标注 - 显式的指出变量的类型
-let doubleValue: Double = 30    // 显示指出一个 Double 类型的变量
+//: ### 类型标注
+// 也可以显式的指出变量的类型
+let otherIntValue: Double = 30    // 显示指出一个 Double 类型的变量
 
-// 定义布尔值
-var boolValue: Bool = true
+//: ## 基础数据类型
+//: swift 有 6 中基础数据类型，分别是 Integer、Float、Double、Boolean、String 和 Character
+/*:
+- 整形: Int Int8 Int16 Int32 Int64
+     
+- 无符号整形: UInt UInt8 UInt16 UInt32 UInt64
+     
+- 浮点数类型: Float Float32 Float64 Float80 Double
+ 
+- 布尔类型: boolean
+ 
+- 字符串类型: String
+ 
+- 字符类型: Character
+*/
 
-// 布尔值的反转
-boolValue.toggle()
+let integerValue: Int = 10
+let floatValue: Float = 10.0
+let doubleValue: Double = 10.0
+let boolValue: Bool = true
+let string: String = "Hello, Swift!"
+let character: Character = string.first!
 
+//: ## 常用属性、函数
 
-//: 常用属性、函数
 Int.min // 获取Int类型的最小值
 Int.max // 获取Int类型的最大值
 
@@ -52,7 +76,7 @@ round(100.3)    // 四舍五入
 round(100.5)
 ceil(100.3)     // 向上取整
 var x = 7.34
-x.round(.towardZero)    // 接收参数, 得到小于等于 x 原始值的一个整数
+x.round(.towardZero)
 
 10.distance(to: 20) // 计算 10 到 20 的距离
 (-10).distance(to: 20) // 计算 -10 到 20 的距离
@@ -68,65 +92,22 @@ acos(45 * Float.pi / 180)
 tan(45 * Float.pi / 180)
 atan(45 * Float.pi / 180)
 
-/*:
+//: ## 可选类型
+//: 在 swift 中使用可选类型(类型后跟一个?号)表示一个变量是否存在一个值，可选类型必须是 `var` 类型
+// 如果变量不存在一个值，则输出为 nil，否则打印给定的值
+var existValue: String?
+existValue = "Hello"
 
- **基本数据结构**
- 
-- 整形: Int Int8 Int16 Int32 Int64
-     
-- 无符号整形: UInt UInt8 UInt16 UInt32 UInt64
-     
-- 浮点数类型: Float Float32 Float64 Float80 Double
- */
-// 字符
-let char: Character = "C"
-
-// 字符串
-let str: String = "String"
-
-//: 数组 (`swift` 中数组必须指定存储类型) | 有序
-let array: Array<Int> = [1, 2, 3]
-let otherArray: [Int] = [1, 2, 3]
-
-//: 字典 (`swift` 中字典必须指定 `key` 和` value` 的类型) | 有序
-let dict: Dictionary<String, String> = ["0": "A", "1": "B"]
-let otherDict: [String: String] = ["0": "A", "1": "B"]
-
-//: 集合 | 无序
-let set: Set<Int> = [1, 2, 3]
-
-
-//: 枚举
-enum Direction {
-    case north
-    case south
-    case east
-    case west
-}
-
-//: Any 可以表示任意类型 （基础数据类型，类类型，方法等）
-var any: Any = 86   // 值类型
-any = CALayer()     // 引用类型
-
-//: AnyObject 可以表示所有引用类型的实例
-let classObj: AnyObject = UIView(frame: CGRect.zero)
-//let classObj2: AnyObject = CGRect.zero  // build error, 无法为其赋予一个值类型的值
-
-//: 可选类型  [Optional Type](Optional)
-//:
-//: `swift` 中使用可选类型来表示'有'和’无‘的概念, 所以如果需要表达一个变量可以有值也可以没有值，那么你可以在定义的类型后加上一个 `?` 号
-var optionalValue: String? = nil // nil 就表示无(.none)
-optionalValue = "have"  // 赋予一个有效的值就表示有(some)
-
-//: 非可选类型必须给定一个存在的值, 否则将出现编译错误
-//let notNilValue: String = nil   // error
-
-
-
-//: 附加
+//: ## 附加
 //:
 //: `typealias AnyClass = AnyObject.Type` 获得一个类的元类型,实际使用中我们可以同过 `class.self` 获得，元类型中存放着类型的相关信息
-let classType: AnyClass = UIView.self   // 获得 UIView 类的元类型，元类型中存放着 UIView 的相关信息
+
+//: swift 是强类型语言，你不能将一个字符串赋值给一个数值类型，但是 swift 提供了 Any 来表示任意类型 （基础数据类型，类类型，方法等），那么现在你可以将一个字符串类型赋值给一个 Any 类型的变量
+var any: Any = 86
+any = "Hello"
+
+// AnyClass 的定义是 typealias AnyClass = AnyObject.Type，所有的 class 类型都隐式的符合 AnyClass
+let classType: AnyClass = UIView.self
 
 class A {
     
@@ -140,7 +121,6 @@ class A {
         print("Instance Method")
     }
 }
-
 
 // 可以认为 A.Type 继承于 AnyClass
 let a1: A.Type = A.self
@@ -158,11 +138,6 @@ A().method()
 // 你也可以这样
 let a = A.self()
 a.method()
-
-// method 方法变为一个闭包
-let closure = a1.method(A.init())
-closure()   // 执行闭包 输出：Instance Method
-
 
 //: [Next](@next)
 

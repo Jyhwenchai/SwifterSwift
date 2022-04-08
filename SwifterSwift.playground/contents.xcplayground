@@ -3,6 +3,7 @@
     <pages>
         <page name='Description'/>
         <page name='Basic'/>
+        <page name='Optional'/>
         <page name='Operator'/>
         <page name='Control Flow'/>
         <page name='Control transfer statement'/>
@@ -25,7 +26,6 @@
         <page name='Height Order Function'/>
         <page name='Equatable-Comparable-Hashable'/>
         <page name='KeyPaths'/>
-        <page name='Optional'/>
         <page name='Subscript'/>
         <page name='New Feature4.2'/>
         <page name='Codable'/>
@@ -35,6 +35,5 @@
         <page name='typealiase'/>
         <page name='associatedtype'/>
         <page name='Advanced Operators'/>
-        <page name='Optional Pattern'/>
     </pages>
 </playground>

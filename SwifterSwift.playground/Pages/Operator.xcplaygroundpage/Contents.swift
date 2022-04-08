@@ -20,7 +20,10 @@ import UIKit
 //: 赋值运算符
 let a = 0
 var b = a
-
+var (c, d) = (1, 2)
+print(c, d)
+(c, d) = (d, c) // 可以通过这个操作对 c、d 的值进行交换
+print(c, d)
 
 //: 比较运算符 (>  =  <  <=  ==、 !=)
 let comparisonValue1 = 1
@@ -46,7 +49,7 @@ arithmeticValue1 / arithmeticValue2
 
 //: 取余运算符 ( % )
 10 % 3
-//10 % 2.6
+//10 % 2.6  // 不能对小数求余
 
 //: 复合赋值运算符 ( +=  -=  *=  /=)
 var x = 10
@@ -56,12 +59,12 @@ x *= 6
 x /= 6
 
 
-//: 闭区间运算符   ( ... )
+//: 闭区间运算符，在 swift 中的定义为 `struct ClosedRange<Bound> where Bound: Comparable`，语法糖为`...`
 for i in 1...5 {
     print(i)
 }
 
-//: 半开区间运算符  ( a..<b )
+//: 半开区间运算符，在 swift 中的定义为 `struct Range<Bound> where Bound: Comparable`，语法糖为`..<`
 for i in 1..<5 {
     print(i)
 }
@@ -75,15 +78,14 @@ let result = value1 > value2 ? value1 : value2
 
 
 //: 逻辑运算符 （与、或、非）
+let and = 1 < 2 && 2 < 3
+
+let or = 1 < 2 || 2 < 3
+
 let not = !true
-
-let and = 1 & 2
-
-let or = 1 | 2
 
 //: ?? 合并运算符，用于对可选类型的值为 `nil` 时提供一个默认值
 var optionalValue: String? = nil
-optionalValue = optionalValue ?? "default value"
-print(optionalValue)
+let resultValue: String = optionalValue ?? "default value"
 
 //: [Next](@next)
