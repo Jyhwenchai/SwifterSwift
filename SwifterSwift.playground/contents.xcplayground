@@ -13,27 +13,24 @@
         <page name='Set'/>
         <page name='Tuple'/>
         <page name='Function &amp; Closure'/>
-        <page name='Class'/>
         <page name='Enum'/>
         <page name='Structure'/>
+        <page name='Class'/>
         <page name='Protocol'/>
         <page name='Extension'/>
         <page name='AccessControl'/>
         <page name='Pattern_Matching'/>
         <page name='Error Handle'/>
-        <page name='Origin Protocol Programing'/>
         <page name='For-Where'/>
         <page name='Height Order Function'/>
-        <page name='Equatable-Comparable-Hashable'/>
         <page name='KeyPaths'/>
         <page name='Subscript'/>
-        <page name='New Feature4.2'/>
-        <page name='Codable'/>
-        <page name='self Type and Self'/>
         <page name='Generic'/>
+        <page name='New Feature4.2'/>
+        <page name='self and Self'/>
         <page name='使用泛型创建动态类型'/>
-        <page name='typealiase'/>
         <page name='associatedtype'/>
+        <page name='typealiase'/>
         <page name='Advanced Operators'/>
     </pages>
 </playground>

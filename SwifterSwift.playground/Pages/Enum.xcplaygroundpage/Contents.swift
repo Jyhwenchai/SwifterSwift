@@ -2,10 +2,10 @@
 
 import UIKit
 
-/*:
- Enum(枚举)
- */
+//: # Enum(枚举)
+//: swift 中的枚举可以定义计算属性、方法和下标，还可以定义枚举的类型，枚举值还可以传递参数
 
+//: ## 基本定义和使用
 //: 定义枚举，使用 `case` 来列举枚举值
 enum CompassPoint {
     case north
@@ -27,9 +27,9 @@ direction.hashValue
 let customDirection = Direction(rawValue: 2)    // 通过原始值初始化一个枚举
 
 /*:
- 使用switch来匹配枚举值
- - swift中的switch默认是不会贯穿的,所以不用谢break，
- - 如果覆盖到了每一个case则不用谢default
+ ## 使用 switch 来匹配枚举值
+ - swift 中的 switch 默认是不会贯穿的,所以不用写 break 语句
+ - 如果覆盖到了每一个 case 分支则不用写 default 语句
  */
 switch direction {
 case .left:
@@ -42,7 +42,7 @@ case .bottom:
     print("bottom")
 }
 
-//: swift中枚举可使用元组来设置多种类型的枚举
+//: swift中枚举可使用元组来传递参数
 enum Barcode {
     case upc(Int, Int, Int, Int)
     case qrCode(String)
@@ -62,7 +62,8 @@ case let .upc(_, _, _, check):  // 省略部分不使用的值
 }
 
 
-//: Recursive Enumerations 递归枚举
+//: ## Recursive Enumerations 递归枚举
+//: swift 中的枚举允许递归，可递归的枚举值使用 `indirect` 关键字修饰
 enum ArithmeticExpression {
     case number(Int)
     indirect case addition(ArithmeticExpression, ArithmeticExpression)  // 加法

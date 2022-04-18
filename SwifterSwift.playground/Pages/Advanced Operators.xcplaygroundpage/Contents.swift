@@ -46,7 +46,7 @@ let equalValue = vector2D1 == result
 /// 使用 `operator` 关键字在全局级别声明新的运算符，并用 `prefix` 前缀，`infix` 中缀或 `postfix` 后缀修饰符标记：
 prefix operator +++
 infix operator +-
-infix operator -=: AdditionPrecedence // 表示 `-=` 属于 AdditionPrecedence 组
+infix operator -=: AdditionPrecedence // 表示 `-=` 属于优先级组 AdditionPrecedence
 
 extension Vector2D {
     static prefix func +++ (vector: inout Vector2D) -> Vector2D{

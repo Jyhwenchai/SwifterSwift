@@ -2,6 +2,8 @@
 
 import UIKit
 
+//: # 字典
+
 /*:
 
  - 创建及初始化字典
@@ -10,7 +12,7 @@ import UIKit
  - 一些注意点
  */
 
-//: 创建及初始化字典
+//: ## 创建及初始化字典
 let dict: Dictionary<String, Int> = ["1": 1, "2": 2, "3": 3]
 
 var varDict: [String: Int] = ["3": 3, "4": 4, "5": 5]
@@ -19,7 +21,7 @@ let letDict = ["7": 7, "8": 8, "9": 9]  // 类型推断
 
 let emptyDict: [String: Int] = [:]     // 空字典
 
-//: 字典的常见操作
+//: ## 字典的常见操作
 
 // 判空
 dict.isEmpty
@@ -33,7 +35,7 @@ dict.capacity
 // 反转操作
 varDict.reversed()
 
-//: 字典的增删改查
+//: ## 字典的增删改查
 
 // 获取所有key
 let keys = [String](dict.keys)
@@ -51,7 +53,6 @@ for key in dict.keys { // 获取所有的key
     print(key)
 }
 
-
 for value in dict.values { // 获取所有的value
     print(value)
 }
@@ -60,7 +61,7 @@ for (key, value) in dict.enumerated() {
     print("key: \(key), value:\(value)")
 }
 
-// 增加操作
+// 添加操作
 varDict["10"] = 10
 
 // 修改操作
@@ -78,7 +79,7 @@ let endIndex = varDict.endIndex
 // 获取 `key` 为10的元素索引
 varDict.index(forKey: "10")
 
-// 获取第一个元素的后一个索引
+// 获取指定索引元素的后一个索引
 let indexTwo = varDict.index(after: startIndex)
 varDict[indexTwo]
 
@@ -104,17 +105,6 @@ varDict.removeValue(forKey: "10")
 // 删除所有元素
 varDict = [:]
 varDict.removeAll()
-
-
-
-//: 一些注意点
-//:
-//: **字典的key必须遵守 `Hashable` 协议**
-
-// 通过 key 得到的是一个可选类型 Optional(value)，因为 key 所对应的 value 不一定存在
-var optaionalValue = [200: "OK"]
-let okValue = optaionalValue[200]
-print(okValue)
 
 
 //: [Next](@next)

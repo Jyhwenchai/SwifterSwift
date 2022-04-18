@@ -5,7 +5,7 @@ import UIKit
 /*:
  # Subscript （下标）
  
- 你可以在 `class`, `struct`, 和 `enum` 中定义下标，使用下标后你可以对 `Array` 中的实例对象使用 `array[index]` 进行访问, 对 `Dictionary` 实例中的元素使用 `soomeDictionary[key]` 进行访问。
+ 你可以在 `class`, `struct`, 和 `enum` 中定义下标，使用下标后你可以像对数组的下班访问方式一样使用类型 `array[index]` 的方式进行访问, 或者类似字典中的元素 `soomeDictionary[key]` 的方式进行访问。
  
  你可以为一个类型定义多个下标或者是不同类型的参数。
  
@@ -58,6 +58,7 @@ struct ReadOnly {
 //: * 带有多个参数的下标
 //: * 带有可变参数的下标
 //: * 带有默认参数的下标
+//:
 //: 下面的示例演示了带有多个参数的下标
 struct Matrix {
     let rows: Int, colums: Int
@@ -92,6 +93,9 @@ struct Army {
     }
 }
 
+let army = Army(soldiers: [1: "A", 2: "B", 3: "C", 4: "D"])
+print(army[1,2,3,4])
+
 //: 下面示例演示了带有默认参数的下标
 struct RandomColor {
     let colors = [UIColor.red, .yellow, .blue]
@@ -99,6 +103,8 @@ struct RandomColor {
         return colors[colorIndex % 3]
     }
 }
+let randomColor = RandomColor()
+print(randomColor[])
 
 //: ## 类型下标
 //: 之前所有的下标示例都是基于实例对象的使用，实际上下标也可以在类型上直接使用
@@ -138,10 +144,57 @@ let child = Child()
 child[0] = "5"  // 重载后为可进行读写操作的下标
 print(base[0], " - " ,child[0])
 
+//: 下标可以作用于泛型
 struct GenericSubscript<G> {
     let value: G
     subscript<S>(_ key: S) -> [S: G] {
         return [key: value]
+    }
+}
+
+//: 将元类类型做为下标参数
+struct MyValue {
+}
+
+struct MyStruct {
+  subscript(_ valueType: MyValue.Type) -> MyValue {
+      get {
+          valueType.init()
+      }
+  }
+}
+
+let myStruct = MyStruct()
+let value = myStruct[MyValue.self]
+print(value)
+
+//: 可以为下标的 get 访问器提供 `async` 和 `throws` 修饰符
+struct Bank {
+    
+    enum AmountError: Error {
+        case outOfRange
+    }
+    
+    var amounts: [Int: String] = [:]
+    
+    subscript(_ month: Int) -> String {
+        get async throws {
+            if month > 12 || month < 0 {
+                throw AmountError.outOfRange
+            }
+            return amounts[month]!
+        }
+    }
+}
+
+var bank = Bank()
+bank.amounts = [1: "11111", 2: "22222", 3: "33333", 4: "44444"]
+Task {
+    do {
+        let amount = try await bank[2]
+        print(amount)
+    } catch {
+        print(error)
     }
 }
 

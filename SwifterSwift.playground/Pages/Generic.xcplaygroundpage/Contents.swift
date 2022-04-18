@@ -4,7 +4,7 @@ import Foundation
 
 
 /*:
- 泛型
+  # 泛型
  - 泛型方法
  - 泛型类型
  - 对泛型类型的扩展
@@ -63,7 +63,7 @@ print("交换后：stringA: \(objA) - stringB: \(objB)")
 swapValue(a: &objA, b: &objB)
 print("交换后：stringA: \(objA) - stringB: \(objB)")
 
-//: 你也可以同时定义多个泛型
+//: 你也可以同时定义多个泛型类型
 func genericFunc<T, E>(a: T, b: E) {}
 
 //: 你可以在 `class`、 `struct`、或 `enum` 进行使用泛型
@@ -93,35 +93,6 @@ list.add(item: a)
 list.add(item: b)
 list.add(item: c)
 print("sum: \(list.sum())")
-
-
-//: 泛型的一致性处理
-//:
-//: 下面例子我们使 `List` 遵循 `Equatable` 协议，并且 `List` 中的元素也遵循 `Equatable` 协议，这里还需要实现 `==` 操作符，这样使用两个 List 之间可以进行相等性的判别
-extension List: Equatable where T: Equatable {
-    static func == (lhs: List<T>, rhs: List<T>) -> Bool {
-        if lhs.items.count != rhs.items.count {
-            return false
-        }
-        
-        for (e1, e2) in zip(lhs.items, rhs.items) {
-            if e1 != e2 {
-                return false
-            }
-        }
-        return true
-    }
-    
-}
-
-//: 实现泛型角标
-extension List {
-    subscript<T: Hashable>(item: T) -> Int {
-        return item.hashValue
-    }
-}
-
-print(list[10])
 
 
 //: [Next](@next)

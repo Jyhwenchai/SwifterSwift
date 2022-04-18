@@ -2,6 +2,7 @@
 
 import UIKit
 
+//: # 扩展
 /*:
  `swift` 中扩展可以做的事情
  - 添加计算属性和类属性
@@ -22,7 +23,7 @@ extension NSObject {
         set { print("extension count setter") }
     }
     
-    // 新增类属性
+    // 新增静态属性
     static var classParameter: Int = 10
     
     // 新增方法
@@ -41,7 +42,7 @@ extension NSObject {
         self.count = count
     }
     
-    // 新增下标
+    // 新增下标操作
     subscript(index: Int) -> Int {
         get { return count }
         set(newValue) { }
@@ -54,9 +55,8 @@ NSObject.classParameter = 20
 
 protocol ExtensionProtocol { }
 
-//: 对协议提供方法
+//: 对协议提供通用方法的实现
 extension ExtensionProtocol {
-    
     func protocolFunc() {
         print("extension protocol function one")
     }
@@ -66,14 +66,16 @@ extension ExtensionProtocol {
 extension UIView: ExtensionProtocol {  }
 UIView().protocolFunc()
 
-// 使用 `where` 指定实现该扩展协议的类必须是 `NSObject` 对象或其子类
+//: 对协议进行约束
+//:
+//: 使用 `where` 指定约束扩展的方法只有是 `NSObject` 对象或其子类才能调用
 extension ExtensionProtocol where Self: NSObject {
     func protocolFuncTwo() {
         print("extension protocol function two")
     }
 }
 
-//: 使NSObject对象遵守 `ExtensionProtocol` 协议
+//: 使 NSObject 对象符合 `ExtensionProtocol` 协议
 class NSObject: ExtensionProtocol { }
 NSObject().protocolFunc()
 NSObject().protocolFuncTwo()

@@ -2,13 +2,15 @@
 
 import UIKit
 
+//: # 控制转发语句
 /*:
  - continue
  - break
  - fallthrough
  */
 
-//: 可以使用 `continue` 在循环中提前终止本次循环中的后续逻辑转而开始下一次的循环，示例如下
+//: ## Continue
+//: 可以使用 `continue` 在循环中提前终止本次循环中的后续逻辑转而开始下一次的循环
 for num in 0...10 {
     if num % 2 == 0 {
         continue
@@ -16,9 +18,8 @@ for num in 0...10 {
     print("jump value: \(num)")
 }
 
-print(" \n================== \n")
-
-//: 我们可以使用 `break` 在指定条件下终止循环，示例如下
+//: ## Break
+//: 可以使用 `break` 在指定条件下终止循环，示例如下
 for num in 0...10 {
     if num == 5 {
         break
@@ -26,9 +27,8 @@ for num in 0...10 {
     print("out value: \(num)")
 }
 
-print(" \n================== \n")
-
-//: 我们可以使用 `fallthrough` 在 `switch-case`中贯穿多个 `case` 分支，示例如下
+//: ## Fallthrough
+//: 可以使用 `fallthrough` 在 `switch-case`中贯穿多个 `case` 分支
 let age = 22
 switch age {
 case let (year) where year < 5:
@@ -43,8 +43,7 @@ default:
     print("young")
 }
 
-print(" \n================== \n")
-
+//: ## Defered
 //: `defered` 中的语句总会在返回前执行，你可以用此在某些情况下做一些清理操作
 func defered() -> String {
     

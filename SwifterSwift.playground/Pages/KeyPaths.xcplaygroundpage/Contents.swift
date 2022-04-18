@@ -2,6 +2,9 @@
 
 import UIKit
 
+//: # KeyPath、WritableKeyPath、ReferenceWritableKeyPath
+
+//: ## KeyPath
 struct Country: CustomStringConvertible {
     let id: Int
     let name: String
@@ -16,15 +19,18 @@ let china = Country(id: 0, name: "中国", describe: "中国有5000年以上的�
 let america = Country(id: 1, name: "America", describe: "The United States is a very developed country")
 let japan = Country(id: 2, name: "Japan", describe: "Japan is a country with many earthquakes")
 
+//: 除了用点语法访问一个变量的属性外，也可以使用 keypath 进行访问变量的属性
+let name = japan[keyPath: \.name]
+
 let countrys = [china, japan, america]
 
-//: 如果你需要获取 `countrys` 的所有 `id` 及所有的 `name`，在不知道 `KeyPath` 的情况下，通常会想下面这样使用 `map` 来解决这个问题
-let ids = countrys.map {$0.id}
-let names = countrys.map {$0.name}
+//: 如果你需要获取 `countrys` 的所有 `id` 及所有的 `name`，在不知道 `KeyPath` 的情况下，通常会像下面这样使用 `map` 来解决这个问题
+let ids = countrys.map { $0.id }
+let names = countrys.map { $0.name }
 
 print("ids: \(ids), names: \(names)")
 
-//: 我们可以使用 `KeyPath` 使代码看起来更加舒服, 这里我们定义了一个 `map` 方法，它接收一个 `KeyPath<Element, T>` 作为参数, 其中 `Element` 表示当前 `Sequence` 所存储的元素，`T` 表示元素 `Element` 的属性, 那么我们就可以通过修改 `map` 参数为 `\.id` 的方式来得到期待的结果
+//: 但实际上可以使用 `KeyPath` 使代码看起来更加简单, 这里我们定义了一个 `map` 方法，它接收一个 `KeyPath<Element, T>` 作为参数, 其中 `Element` 表示当前 `Sequence` 所存储的元素，`T` 表示元素 `Element` 的属性, 那么我们就可以通过修改 `map` 参数为 `\.id` 的方式来得到期待的结果
 extension Sequence {
     func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
         return map { $0[keyPath: keyPath] }
@@ -64,7 +70,7 @@ struct Playlist{
     
 }
 
-// 使用常规的方式对 cell 与 model 直接进行关联
+//: 使用常规的方式对 cell 与 model 直接进行关联
 struct SongCellConfigurator {
     func configure(_ cell: UITableViewCell, for song: Song) {
         cell.textLabel?.text = song.name
@@ -73,7 +79,7 @@ struct SongCellConfigurator {
     }
 }
 
-// 使用 KeyPath 进行优化
+//: 使用 KeyPath 进行优化
 // 这里创建了 CellConfigurator， 并使用泛型以支持不同的模型
 struct CellConfigurator<Model> {
     let titleKeyPath: KeyPath<Model, String>
@@ -99,51 +105,45 @@ let playlistCellConfigurator = CellConfigurator<Playlist>(
     imageKeyPath: \.artwork
 )
 
-//: `ReferenceWritableKeyPath` 可以定义一个既可读又可写的 `KeyPath`
-struct Item { var index: Int}
-
-class ListController {
-    private var items = [Item]() { didSet { render() } }
-    
-    func loadItems() {
-        load { (items) in
-            
-        }
-    }
-    
-    func render() {
-        print("rendering")
-    }
-    
-    func load(_ complete: ([Item]) -> ()) {
-        complete([Item(index: 0), Item(index: 1)])
-    }
-    
+//: ## `WritableKeyPath`
+//: `WritableKeyPath` 继承于 `KeyPath` 类，提供对具有值语义的可变属性的读写访问
+struct User {
+    var age: Int
+    var name: String
 }
 
-func setter<Object: AnyObject, Value>(
-    for object: Object,
-    keyPath: ReferenceWritableKeyPath<Object, Value>
-    ) -> (Value) -> Void {
-    return { [weak object] value in
-        object?[keyPath: keyPath] = value   // 实现写的操作
+var user = User(age: 20, name: "hehe")
+func changeUserProperty<Value>(keyPath: WritableKeyPath<User, Value>, newValue: Value) {
+    user[keyPath: keyPath] = newValue
+    print(user[keyPath: keyPath])
+}
+print(user)
+changeUserProperty(keyPath: \.age, newValue: 33)
+changeUserProperty(keyPath: \.name, newValue: "haha")
+
+//: ## ReferenceWritableKeyPath
+//: `ReferenceWritableKeyPath` 提供对具有引用语义的可变属性的读写访问
+class Person: CustomStringConvertible {
+    var age: Int
+    var name: String
+    
+    init(age: Int, name: String) {
+        self.age = age
+        self.name = name
+    }
+    
+    var description: String {
+        "Person(age: \(age), name: \(name))"
     }
 }
 
-extension ListController {
-    func reLoadItems() {
-        reLoad(then: setter(for: self, keyPath: \.items))
-    }
-    
-    func reLoad(then: ([Item]) -> Void) {
-        let data = [Item(index: 0), Item(index: 1)]
-        then(data)
-    }
-    
-//    func reLoad(then: (Any) -> Void) {
-//        let data = [Item(index: 0), Item(index: 1)]
-//        then(data)
-//    }
+var person = Person(age: 20, name: "hehe")
+func changePersonProperty<Value>(keyPath: WritableKeyPath<Person, Value>, newValue: Value) {
+    person[keyPath: keyPath] = newValue
+    print(person[keyPath: keyPath])
 }
+print(person)
+changePersonProperty(keyPath: \.age, newValue: 33)
+changePersonProperty(keyPath: \.name, newValue: "haha")
 
 //: [Next](@next)

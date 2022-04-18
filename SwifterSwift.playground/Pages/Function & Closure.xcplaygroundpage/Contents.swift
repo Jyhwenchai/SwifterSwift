@@ -2,9 +2,9 @@
 
 import UIKit
 
+//: # 函数
 /*:
- function的定义
- 其中使用 `func` 作为方法的关键字，`funcName` 为函数名，`outParam` 为函数的外部参数，
+ 函数使用 `func` 作为方法的关键字，`funcName` 为函数名，`outParam` 为函数的外部参数，
  `innerParam` 为内部参数，外部参数可省略使用 `_`表示，`->` 后为函数的返回类型，这里是 `String` 类型
  */
 func funcName(outParam innerParam: String) -> String {
@@ -19,7 +19,7 @@ func1()
 func func2(_ innerparam: String) { }
 func2("Hello, World")
 
-//: 定义带多个个参数，返回值为 `String` 类型的函数
+//: 定义带多个参数，返回值为 `String` 类型的函数
 func func3(_ param1: String, _ param2: String) -> String { return param1 + "，" + param2 }
 func3("Hello", "World")
 
@@ -48,7 +48,7 @@ func func7(paramCount: Int, paramNames: String...) {
 
 func7(paramCount: 3, paramNames: "cai", "zhi", "wen")
 
-//: Closer 闭包
+//: ## Closer 闭包
 /*:
  闭包的定义如下:
  
@@ -70,7 +70,12 @@ let closure = {
 //: 定义一个参数为 `String` 类型，返回值为 `String` 类型的闭包
 let closure2 = {
     (param: String) -> String in
-        return "Hello, World"
+        return "Hello, \(param)"
+}
+
+//: 上面的示例其实没有显示的声明变量 closure2 的类型，而是根据具体的值进行了类型推断，我们也可以使用显示声明定义一个闭包
+let closure3: (String) -> String = { param in
+   return "Hello, \(param)"
 }
 
 //: 闭包可以作为函数参数, 这里在 `param: ()->()` 定义了无参数无返回值的闭包作为函数参数, 并且返回了一个无参数无返回值 的闭包作为函数的返回值
@@ -101,10 +106,16 @@ closureFunc {
 }
 
 //: 如果闭包带有参数, 那么将以元组来接收参数
-func closureFunc2(param: (_ param1: String, _ param2: String)->()) {}
+func closureFunc2(param: (_ param1: String, _ param2: String)->()) {
+    param("Hello", " World")
+}
+//: 这里 param 闭包中的参数名可以省略
+func closureFunc2Equal(param: (String, String) -> Void) {
+    param("Hello", " World")
+}
 
-closureFunc2 { (param1, param2) in
-    print(param1 + "" + param2)
+closureFunc2 { (param1, param3) in
+    print(param1 + "" + param3)
 }
 
 //: 如果不使用参数，可以使用下划线忽略参数
@@ -214,5 +225,9 @@ myType.getNum(handler: multiply)
 myType.getNum(handler: second)
 myType.getNum(handler: answer)
 
+//: 可选闭包默认就是逃逸的
+func optionalClosure(closure: (() -> Void)?) {
+    closure?()
+}
 
 //: [Next](@next)

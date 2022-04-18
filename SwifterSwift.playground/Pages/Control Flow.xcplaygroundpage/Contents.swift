@@ -15,7 +15,7 @@ import UIKit
  */
 
 
-//: 使用 `for in` 遍历 Range 类型
+//: ### 使用 `for in` 遍历 Range 类型
 for i in 0...6 {
     print(i)
 }
@@ -43,19 +43,44 @@ for value in set {
 }
 
 
-//: while
+//: ### while
 var i = 0
 while i < 6 {
     print(i * 10)
     i += 1
 }
 
-//: repeat-while
+//: ### repeat-while
 var ran: Int
 repeat {
     ran = Int.random(in: 1..<20)
     print(ran)
 } while ran < 4
+
+
+//: ### if
+// swift 中的 if 语句不需要括号包裹
+let isTrue = true
+if isTrue {
+    print("a if statement")
+}
+
+//: ### switch
+//: swift 中的 switch 语句用法很丰富，后续会在有更多的示例
+enum Direction {
+    case left
+    case right
+    case top
+    case bottom
+}
+let direction: Direction = .right
+//: swift 中的 switch case 中默认是 break 的，无需显示的写出
+switch direction {
+case .left: print("left")
+case .right: print("right")
+case .top: print("top")
+case .bottom: print("bottom")
+}
 
 
 

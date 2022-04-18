@@ -4,13 +4,13 @@ import UIKit
  
  # Self .self 和 .Type
  
- 在 Swift 中元类型（metaType）非常有用，我们会经常用到它，只不过它的表现看起来并不那么容易理解。这里将对此做一些解释。
+ 在 Swift 中元类型（metaType）非常有用，我们会经常用到它，只不过它的表现看起来并不那么容易理解
 */
 
 /*:
  ## .Type
  
- 什么是元类型? 所谓的元类型其实就是类型的类型。在 Swift 中我么说 `let intValue: Int = 1` 中的 intValue 是 Int 类型，那么 Int 它的类型又是什么呢？答案是 `Int.Type`，而它就是 Int 的元类型。所以在Swift中使用 `.Type` 类表示一个类型的元类型。
+ 什么是元类型? 所谓的元类型其实就是类型的类型。在 Swift 中通常说 `let intValue: Int = 1` 中的 intValue 是 Int 类型，那么 Int 它的类型又是什么呢？答案是 `Int.Type`，而它就是 Int 的元类型。所以在 Swift 中使用 `.Type` 类表示一个类型的元类型。
  */
 
 let intValue: Int = 1
@@ -58,7 +58,7 @@ createPeople(p: Woman.self)
  
  */
 
-// 通过 Int(1).self 获取到 Int(1) 实例对象的元类型，可以发现其元类型就是 niInt 本身
+// 通过 Int(1).self 获取到 Int(1) 实例对象的元类型，可以发现其元类型就是 Int 本身
 let intInstatnceType: Int = Int(1).self
 
 // 动过 Int.self 获取到 Int 类型的元类型，可以发现元类型为 Int.Type

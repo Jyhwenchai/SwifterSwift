@@ -57,7 +57,7 @@ import UIKit
 ///
 /// - class 可以继承，而 struct 不支持继承
 /// - class 可以有自定义的反初始化方法，而 struct 没有
-/// - 引用计数, class 用引用计数的概念，而 struct 没有，因为 struct 是值类型，所以多个变量间的引用会发生拷贝
+/// - 引用计数, class 用引用计数的概念，而 struct 没有，因为 struct 是值类型，所以多个变量间的赋值操作会发生拷贝
 
 
 /*: Swift 中的 class
@@ -83,7 +83,7 @@ class ClassC: NSObject, ProtocolA {
 
 }
 
-//: 类的存储属性、计算属性、下标
+//: 类的存储属性、计算属性、下标、静态属性、静态方法和类方法
 class ClassD {
     // 定义 `Int` 类型的存储属性，并给定初始值0
     var count: Int = 0
@@ -103,6 +103,7 @@ class ClassD {
     }()
     
     
+    
     // 计算属性
     var name: String {
         get { return firstName + "-" + lastName }  // get 方法
@@ -113,6 +114,7 @@ class ClassD {
         /// set {
         ///     name = newValue
         /// }
+        ///
     }
     
     // 只读的计算属性可以使用更简练的写法
@@ -145,19 +147,25 @@ class ClassD {
         }
     }
     
+    // 静态属性
+    static let classVaraible = "class varaible"
+    // 静态方法
+    static func staticFunc() {}
+    // 类方法，和静态方法的主要区别是，类方法允许继承而静态方法不可以
+    class func classFunc() {}
 }
 
 let classD = ClassD()
 classD.name
-classD.name = "czw-yixing"
+classD.name = "czw"
 classD.changeName = "Swifter"
 
 classD.changeName
 classD.name
 classD.fullName
 
+//: ## 类的初始化过程
 /*:
- 初始化过程
  - 普通初始化方法 `init()` 称为`指定构造器`
  - 如果 `init()` 方法前带有 `convenience` 关键字，该初始化方法又称为`便利构造器`
  - 指定构造器中不能调用另一个指定构造器来初始化，便利构造器最终必须调用一个指定构造器进行初始化
@@ -206,7 +214,7 @@ class ClassE {
     convenience init(weight: Double, height: Double) {
 //        self.isHuman = true // error
         self.init(weight: weight, height: height, isHuman: true)
-//        self.isHuman = false // pass, 在修改属性前必须保证所有属性已经初始化
+        self.isHuman = false // pass, 在修改属性前必须保证所有属性已经初始化
     }
 }
 
@@ -229,6 +237,7 @@ class ClassEChild2: ClassE {
     var age: Int = 0    //  新增属性会导致无法使用子类构造器
     
     // 这里需要重新给定一个指定构造器
+    // 在调用父类的指定构造器前必须保证子类中的其它属性必须初始化完成，即下面的 age 属性应该在调用 super.init() 之前完成初始化
     init(age: Int) {
         self.age = age
         super.init()
@@ -239,13 +248,6 @@ class ClassEChild2: ClassE {
         super.init(weight: weight, height: height, isHuman: isHuman)
     }
 }
-
-// 下面两个创建实例的调用会失败，因为子类创建了一个新的存储属性，导致无法直接使用子类的初始化方法
-//ClassEChild2()
-//ClassEChild2(weight: 100, height: 100)
-
-// 当然如果你重写父类的初始化方法后，那么就可以使用了
-//ClassEChild2(weight: 100, height: 100, isHuman: true)
 
 // 使用子类的初始化方法创建实例
 ClassEChild2(age: 23)

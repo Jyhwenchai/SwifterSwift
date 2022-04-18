@@ -2,6 +2,7 @@
 
 import UIKit
 
+//: # Set
 /*:
  
  - 集合的创建及初始化
@@ -12,21 +13,21 @@ import UIKit
 
  */
 
-//: 集合的创建及初始化
+//: ## 集合的创建及初始化
 var set: Set<Int> = [1, 2, 3, 4]
 let array = [6, 7, 8, 9]
 var varSet = Set<Int>(array)
 var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
 let initialIndices = Set(0..<5)
 
-//: 集合的常用属性
+//: ## 集合的常用属性
 set.isEmpty // 判空
 set.count   // 个数
 set.contains(3) // 是否包含某个元素
 set.max()   // 集合中的最大元素
 set.min()   // 集合中的最小元素
 
-//: 集合的增删改查
+//: ## 集合的增删改查
 // 遍历
 for elem in varSet {
     print(elem)
@@ -66,7 +67,7 @@ print(varSet)
 print(set)
 print(symetricDiffSet)
 
-// 去除 set 里所包含的元素
+// 去除 varSet 里的元素，如果这些元素出现在 set 中
 varSet.subtract(set)
 print(varSet)
 

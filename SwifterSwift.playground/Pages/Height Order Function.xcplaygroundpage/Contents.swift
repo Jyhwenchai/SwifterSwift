@@ -13,7 +13,7 @@ import Foundation
  - partition
  */
 
-//: `map` 可以对集合类型进行一次处理
+//: `map` 可以对集合类型进行一次映射处理，得到映射后的新数组
 let strings = ["oc", "swift", "python"]
 var mapStrings = strings.map { (string) -> String in
     return string.capitalized
@@ -35,11 +35,16 @@ print(" \n=============================================\n")
 //: `flatMap` 将对集合类型进行展开
 print(strings.flatMap { $0.uppercased()} )
 print("STRING".flatMap { $0.lowercased()} )
+let nestingArray: [[String]] = [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
+let flatValue = nestingArray.flatMap {
+    $0.map { $0 }
+}
+print(flatValue)
 
 
 print(" \n=============================================\n")
 
-//: `compactMap` 将忽略集合中的 `Optional` 类型值为 `nil` 的对象
+//: `compactMap` 将忽略集合中的值为 `nil` 的对象
 let optionalStrings = ["OC", "Swift", nil, "Python", nil]
 
 //: 注意使用 `map` 处理可选类型的集合需指明闭包参数及返回类型, 但通常我们不推荐使用它，而是应该使用 `compactMap`
@@ -56,18 +61,6 @@ print(mapOptionalStrings)
 let compactMapStrings = optionalStrings.compactMap { $0?.lowercased() }
 print(compactMapStrings)
 
-//: Apple 的示例, 注意打印的结果
-let possibleNumbers = ["1", "2", "three", "///4///", "5"]
-
-let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
-
-print(mapped)
-
-let compactMapped: [Int] = possibleNumbers.compactMap { str in Int(str) }
-print(compactMapped)
-
-
-
 print(" \n=============================================\n")
 
 //: `filter` 可以对集合类型进行筛选
@@ -77,7 +70,7 @@ print(filterStrings)
 
 print(" \n=============================================\n")
 
-//: `reduce` 可以对集合类型进行计算, `reduce` 的定义中 `initialResult` 是初始值，闭包有两个参数用于计算，其中 `result` 是上一次计算的结果，第二个参数 `value` 是集合中的值，返回值将用来参与下一次计算的第一个参数 `result`
+//: `reduce` 可以对集合类型进行计算, `reduce` 的定义中 `initialResult` 是初始值，闭包有两个参数用于计算，其中 `result` 是上一次计算的结果，第二个参数 `value` 是集合中的值，返回值将用来参与下一次计算
 //:
 //: `func reduce<Result>(_ initialResult: Result, _ nextPartialResult: (Result, Int) throws -> Result) throws -> Result`
 let numArr = [1,2,3,4,5]
@@ -93,20 +86,20 @@ print(" \n=============================================\n")
 
 //: `contain` 可以判断集合类型是否包含给定条件的对象
 let list = ["pink", "orange", "purple", "red"]
-let contain = list.contains {$0.contains("p")}
+let contain = list.contains { $0.contains("p") }
 print("list \(contain ? "contain" : "not contain") specified value")
 
 
 print(" \n=============================================\n")
 
-// `sort` 可以对集合类型进行排序
+//: `sort` 可以对集合类型进行排序
 let sortNums = [3, 15, 66, 32, 11, 88]
 // 默认是升序
 print(sortNums.sorted())
 // 降序
 print(sortNums.sorted(by: >))
 
-// 自定义排序规则
+//: 自定义排序规则
 let sortStrings = ["Swift", "Objective-C", "Python", "C", "C++", "PHP"]
 let sortResult = sortStrings.sorted {
     if $0.first == $1.first {

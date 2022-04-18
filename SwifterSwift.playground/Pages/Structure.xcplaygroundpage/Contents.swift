@@ -84,6 +84,7 @@ struct Circle {
     }
 }
 
+//: 使用全能初始化器进行初始化
 var circle = Circle(radius: 10, center: CGPoint(x: 0, y: 0))
 circle.area = 100
 
@@ -91,6 +92,7 @@ circle.area = 100
 struct Rectangle {
     var width: Double
     var height: Double = 20
+    static let tag = "Tag"  // 静态属性
     
     // 定义初始化方法
     init(width: Double) {
